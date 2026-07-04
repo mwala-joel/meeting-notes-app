@@ -14,11 +14,12 @@ type MeetingNote = {
   standalone: true,
   imports: [FormsModule],
   templateUrl: './meeting-notes.html',
-
+  styleUrl: './meeting-notes.css',
 })
 export class MeetingNotes {
   title = '';
   notes = '';
+  searchText = '';
 
   meetingNotes: MeetingNote[] = [];
 
@@ -28,6 +29,16 @@ export class MeetingNotes {
 
   isBrowser() {
     return isPlatformBrowser(this.platformId);
+  }
+
+  get filteredMeetingNotes(): MeetingNote[] {
+    const search = this.searchText.toLowerCase();
+
+    return this.meetingNotes.filter((meeting) => {
+      return (
+        meeting.title.toLowerCase().includes(search) || meeting.notes.toLowerCase().includes(search)
+      );
+    });
   }
 
   addMeetingNote() {
@@ -56,6 +67,10 @@ export class MeetingNotes {
     });
 
     this.saveMeetingNotes();
+  }
+
+  clearSearch() {
+    this.searchText = '';
   }
 
   saveMeetingNotes() {

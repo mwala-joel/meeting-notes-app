@@ -1,15 +1,26 @@
 <section class="max-w-3xl mx-auto">
   <div class="border p-4 mb-4">
-    <h1 class="text-2xl font-bold mb-2">Meeting Notes</h1>
+    <h1 class="text-2xl font-bold mb-2">
+      Meeting Notes
+    </h1>
 
-    <p>Add meeting notes.</p>
+    <p>
+      Add meeting notes manually for now. Later, we will upgrade this to voice AI.
+    </p>
   </div>
 
-  <form class="border p-4 mb-4" (ngSubmit)="addMeetingNote()">
-    <h2 class="font-bold mb-3">Add Meeting</h2>
+  <form
+    class="border p-4 mb-4"
+    (ngSubmit)="addMeetingNote()"
+  >
+    <h2 class="font-bold mb-3">
+      Add Meeting
+    </h2>
 
     <div class="mb-3">
-      <label class="block mb-1"> Meeting Title </label>
+      <label class="block mb-1">
+        Meeting Title
+      </label>
 
       <input
         class="border w-full p-2"
@@ -21,7 +32,9 @@
     </div>
 
     <div class="mb-3">
-      <label class="block mb-1"> Meeting Notes </label>
+      <label class="block mb-1">
+        Meeting Notes
+      </label>
 
       <textarea
         class="border w-full p-2 min-h-32"
@@ -31,17 +44,53 @@
       ></textarea>
     </div>
 
-    <button class="border px-4 py-2" type="submit">Save Meeting</button>
+    <button
+      class="border px-4 py-2"
+      type="submit"
+    >
+      Save Meeting
+    </button>
   </form>
 
+  <div class="border p-4 mb-4">
+    <label class="block mb-1">
+      Search Meetings
+    </label>
+
+    <input
+      class="border w-full p-2"
+      type="text"
+      placeholder="Search meeting title or notes..."
+      [(ngModel)]="searchText"
+    />
+
+    <button
+      class="border px-3 py-1 mt-2"
+      type="button"
+      (click)="clearSearch()"
+    >
+      Clear Search
+    </button>
+  </div>
+
   <div class="border p-4">
-    <h2 class="text-xl font-bold mb-3">Saved Meetings</h2>
+    <h2 class="text-xl font-bold mb-3">
+      Saved Meetings
+    </h2>
 
     @if (meetingNotes.length === 0) {
-      <p>No meetings saved yet.</p>
+      <p>
+        No meetings saved yet.
+      </p>
     }
 
-    @for (meeting of meetingNotes; track meeting.id) {
+    @if (meetingNotes.length > 0 && filteredMeetingNotes.length === 0) {
+      <p>
+        No meetings match your search.
+      </p>
+    }
+
+    @for (meeting of filteredMeetingNotes; track meeting.id) {
       <article class="border p-3 mb-3">
         <div class="flex justify-between gap-4">
           <div>
