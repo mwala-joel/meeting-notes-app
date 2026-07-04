@@ -2,10 +2,10 @@
   <div class="border p-4 mb-4">
     <h1 class="text-2xl font-bold mb-2">Meeting Notes</h1>
 
-    <p>Add meeting notes</p>
+    <p>Add meeting notes manually for now. Later, we will upgrade this to voice AI.</p>
   </div>
 
-  <form class="border p-4" (ngSubmit)="addMeetingNote()">
+  <form class="border p-4 mb-4" (ngSubmit)="addMeetingNote()">
     <h2 class="font-bold mb-3">Add Meeting</h2>
 
     <div class="mb-3">
@@ -33,4 +33,28 @@
 
     <button class="border px-4 py-2" type="submit">Save Meeting</button>
   </form>
+
+  <div class="border p-4">
+    <h2 class="text-xl font-bold mb-3">Saved Meetings</h2>
+
+    @if (meetingNotes.length === 0) {
+      <p>No meetings saved yet.</p>
+    }
+
+    @for (meeting of meetingNotes; track meeting.id) {
+      <article class="border p-3 mb-3">
+        <h3 class="font-bold">
+          {{ meeting.title }}
+        </h3>
+
+        <p class="text-sm mb-2">
+          {{ meeting.createdAt }}
+        </p>
+
+        <p class="whitespace-pre-wrap">
+          {{ meeting.notes }}
+        </p>
+      </article>
+    }
+  </div>
 </section>
