@@ -2,7 +2,7 @@
   <div class="border p-4 mb-4">
     <h1 class="text-2xl font-bold mb-2">Meeting Notes</h1>
 
-    <p>Add meeting notes manually for now. Later, we will upgrade this to voice AI.</p>
+    <p>Add meeting notes.</p>
   </div>
 
   <form class="border p-4 mb-4" (ngSubmit)="addMeetingNote()">
@@ -43,13 +43,25 @@
 
     @for (meeting of meetingNotes; track meeting.id) {
       <article class="border p-3 mb-3">
-        <h3 class="font-bold">
-          {{ meeting.title }}
-        </h3>
+        <div class="flex justify-between gap-4">
+          <div>
+            <h3 class="font-bold">
+              {{ meeting.title }}
+            </h3>
 
-        <p class="text-sm mb-2">
-          {{ meeting.createdAt }}
-        </p>
+            <p class="text-sm mb-2">
+              {{ meeting.createdAt }}
+            </p>
+          </div>
+
+          <button
+            class="border px-2 py-1 h-fit"
+            type="button"
+            (click)="deleteMeetingNote(meeting.id)"
+          >
+            Delete
+          </button>
+        </div>
 
         <p class="whitespace-pre-wrap">
           {{ meeting.notes }}
