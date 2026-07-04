@@ -1,3 +1,9 @@
 <main class="min-h-screen p-6">
-  <app-meeting-notes></app-meeting-notes>
+  <nav class="border p-3 mb-6 flex gap-4">
+    <a routerLink="/meeting-notes" class="underline"> Meeting Notes </a>
+
+    <a routerLink="/about" class="underline"> About </a>
+  </nav>
+
+  <router-outlet></router-outlet>
 </main>

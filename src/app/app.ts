@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { MeetingNotes } from './pages/meeting-notes/meeting-notes';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MeetingNotes],
+  imports: [RouterLink, RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css',
 })
 export class App {}
