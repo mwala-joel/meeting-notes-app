@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'RENDER_URL',
+  apiUrl: 'https://meeting-notes-app-ogcp.onrender.com/',
 };
