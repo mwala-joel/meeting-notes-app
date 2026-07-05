@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 type MeetingNote = {
   id: number;
@@ -174,7 +175,7 @@ export class MeetingNotes {
 
     formData.append('audio', audioBlob, 'recording.webm');
 
-    const response = await fetch('/api/transcribe-meeting', {
+    const response = await fetch('${environment.apiUrl}/api/transcribe-meeting', {
       method: 'POST',
       body: formData,
     });
