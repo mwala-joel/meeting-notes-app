@@ -175,7 +175,7 @@ export class MeetingNotes {
 
     formData.append('audio', audioBlob, 'recording.webm');
 
-    const response = await fetch('${environment.apiUrl}/api/transcribe-meeting', {
+    const response = await fetch(`${environment.apiUrl}/api/transcribe-meeting`, {
       method: 'POST',
       body: formData,
     });
